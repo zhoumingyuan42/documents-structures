@@ -21,54 +21,77 @@
 
 class: center, middle
 
-# Cours 01
-## 16/01/2020
+# XML
 
 ---
 ## Préambule
-Envoyez un mail à `arthur.provenier@gmail.com` avec comme
+
+Envoyez un mail de présentation avec les informations suivantes 
 - objet : `[M2 TAL] présentation`
 - corps du message :
     - Prénom NOM
-    - Un emploi en cours ?
-    - Quel master en M1 ?
-    - Après le master ? plutôt public ou privé ?
-    - Languages de programmation connus
-    - Langues parlées
+    - un emploi en cours ? à côté du master
+    - avez-vous fait le M1 Plurital ?
+    - langages de programmation connus
+    - langues parlées
+    - URL de votre GitHub
+
+Si vous n'êtes pas inscrit à l'Inalco mais à Paris 3 ou bien Nanterre,
+indiquez cette information dans le mail avec votre numéro étudiant.
+Cela me sera utile lors de la remise des notes
 
 ---
 ## Rappel sur XML
 ### Historique
 
-Permettre la structuration de documents avec l'aide de balises.
-
-Relier des informations structurées sous forme d'arbres.
-
-Développé par le W3C qui définit les [spécifications](https://www.w3.org/XML/).
+#### XML est 
 
 Hérité de **S**tandard **G**eneralized **M**arkup **L**anguage (SGML), un standard pour définir les langages à balises.
-HTML est aussi hérité de ce standard.
+HTML est aussi hérité de ce standard mais avec un vocabulaire contrôlé.
+
+Développé en 1998 par le W3C qui définit les [spécifications](https://www.w3.org/XML/).
+
+Permet la structuration de documents en séparant le contenu de la mise en forme.
+
+La structuration s'effectue à l'aide de `<balises>`
+
+L'information est représentée de façon hiérarchique. Le niveau le plus haut, est le plus général,
+le niveau le plus bas, est le plus précis. Il s'agit d'une représentation en arbre, à la manière
+des répertoires.
 
 ---
 ### Manipulation
-On trouve du XML un peu partout, comme avec [Maven](https://maven.apache.org/) ou bien le format odt.
+
+Le XML a donné lieu à plusieurs formats comme [RSS](https://en.wikipedia.org/wiki/RSS), 
+[SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics).
+
+Il est à la base des formats utilisés par les logiciels de bureautique (Microsoft Office, Libre Office).
+
+Vous pouvez le vérifier de cette façon
 
 ``` bash
 # Ouvrir LibreOffice Writer
-# Écrire "Hello World!" puis enregistrer
+# Écrire "Hello World!" dans votre document.
+# Enregistrer sous le nom "hello.odt"
 
 # -d spécifie un dossier pour dézipper le contenu
-unzip nomFichier.odt -d contenu-odt
+unzip hello.odt -d hello-contenu
 
 # Explorer le dossier créé
 ```
 
---
+---
 
-Nos données sont encodées en xml !
+Vous verrez que notre `Hello World !` se trouve dans le document `content.xml`.
+
+En effet, le format `.odt` est une archive contenant les différentes instructions pour interprétation
+par l'éditeur.
+
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+<office:document-content 
+    xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
     xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
     xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
     office:version="1.2">
