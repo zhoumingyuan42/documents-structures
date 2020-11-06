@@ -111,8 +111,8 @@ La syntaxe est `predicat[condition]`.
 
 Un prédicat peut lui-même être une expression XPath.
 
-`child::livre[child::page[not(child::footnoot)]]` : les nœuds enfants `<livre>` qui ont des `<page>` ne contenant pas de `<footnote>`
-`child::livre[2]` : le second nœud enfant `<livre>`
+- `child::livre[child::page[not(child::footnoot)]]` : les nœuds enfants `<livre>` qui ont des `<page>` ne contenant pas de `<footnote>`
+- `child::livre[2]` : le second nœud enfant `<livre>`
 
 Lorsque l'on utile les crochets `[]`, on ne se déplace pas sur l'axe. Le déplacement est induit par le slash `/`.
 Les deux exemples suivants n'expriment pas la même chose. Le premier cas, on se déplace sur `<livre>` puis `<page>`. Le second cas, sélectionne les `<livre>` qui ont `<page>` pour enfant.
