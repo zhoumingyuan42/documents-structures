@@ -142,6 +142,7 @@ Il est possible de mélanger les notations abrégrées avec les notations compl�
 ## Exercice
 
 [https://developer.mozilla.org/en-US/docs/Web/XPath/Functions](https://developer.mozilla.org/en-US/docs/Web/XPath/Functions)
+Ou mieux [https://www.w3.org/TR/xpath-functions/](https://www.w3.org/TR/xpath-functions/)
 
 ### Partie 1
 
