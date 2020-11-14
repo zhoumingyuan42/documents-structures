@@ -13,3 +13,10 @@
 13. //rupture[@nom="SP95" and matches(@début, '2013-02-04')]/..
 14. /pdv_liste/pdv/fermeture[not(@*)]/..
 15. /pdv_liste/pdv/ville[text()="La Mure"]/../prix[@nom="E10"]
+16. count(//pdv)
+17. //adresse/string-length()
+18. max(//adresse/string-length())
+19. //pdv[ouverture[@fin!="20:00"]]
+20. //prix/lower-case(@nom)
+21. //pdv/replace(@latitude,"\.", "--")
+22. /pdv_liste/pdv/prix/string-join(reverse(tokenize(@maj, ' ')), 'T')
