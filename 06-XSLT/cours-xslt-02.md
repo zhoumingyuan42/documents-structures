@@ -115,7 +115,7 @@ Par exemple :
 <xsl:value-of select="$x"/>
 ```
 
-## Les modes
+## Mécanismes d'import
 
 
 Pour simplifier la complexité d'une feuille XSLT, ou bien pour réutiliser du code existant, il est possible d'utiliser le mécanisme d'import.
