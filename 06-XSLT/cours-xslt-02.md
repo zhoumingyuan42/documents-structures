@@ -1,4 +1,6 @@
-## Les boucles
+# XSLT suite
+
+## Les boucles
 
 ### for-each
 
