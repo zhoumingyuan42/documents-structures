@@ -1,6 +1,6 @@
 # XQuery
 
-## Introduction
+## Introduction
 
 `XQuery` ou `XML Query Language` est défini par le [W3C](https://www.w3.org/XML/Query/). C'est un langage de requêtes pour exploiter, extraire de l'information des documents XMLs. On peut dire que c'est un peu le `SQL` du XML.
 
@@ -12,7 +12,7 @@ C'est un langage de programmation dit `fonctionnel`. Chaque expression évalue u
 
 Il est également adapté pour mettre à jour des documents XMLs.
 
-## Syntaxe
+## Syntaxe
 
 ### Préambule
 
@@ -85,7 +85,7 @@ Une séquence se déclare comme pour `XPath`, en parenthésant son contenu `( ..
 ('a', 1, <hello/>)
 ```
 
-### Concaténation
+### Concaténation
 
 Il est possible de concaténer des chaînes de caractères avec l'opérateur `||`.
 
@@ -96,11 +96,11 @@ Il est possible de concaténer des chaînes de caractères avec l'opérateur `||
 
 On peut aussi utiliser la fonction `concat()`.
 
-### Application d'une fonction
+### Application d'une fonction
 
 L'opérateur `!` applique une fonction sur une valeur.
 
-```
+``` xquery
 ('a', 'b') ! upper-case(.)     'A', 'B'
 ```
 
@@ -120,7 +120,7 @@ La construction la plus importante en `XQuery` est appelée `FLOWR` pour `FOR, L
 
 Celle-ci permet d'itérer sur une séquence et de manipuler les éléments (`for`). On peut déclarer des variables à l'intérieur (`let`), les trier (`order`), appliquer une condition (`where`) et renvoyer le résultat (`return`).
 
-```
+``` xquery
 for $x in (1 to 5)        (: Itération à travers une séquence :)
     let $mul := $x * 2    (: Assignation d'une variable :)
     where $x > 2          (: Filtre sur une condition :)
@@ -132,19 +132,19 @@ return $x                 (: Retourne le résultat :)
 
 Les clauses `order` et `where` sont optionnelles.
 
-```
+``` xquery
 for $auteur in ('Marcel Arland', 'Jean Paulhan', 'Francis Ponge')
 return string-length($auteur)
 ```
 
-```
+``` xquery
 let $words := tokenize('Marcel Arland était à la NRF.', ' ')
 return $words
 ```
 
 On peut utiliser un `XPath` comme point d'entrée.
 
-```
+``` xquery
 let $auteurs :=
     <auteurs>
         <auteur prenom="Marcel">Arland</auteur>
@@ -160,11 +160,11 @@ return $nom ||', '||$prenom
 (: Arland, Marcel Paulhan, Jean Ponge, Francis :)
 ```
 
-#### `group by` 
+#### `group by` 
 
 On peut grouper selon une condition.
 
-```
+``` xquery
 let $auteurs :=
     <auteurs>
         <auteur sexe='m' prenom="Marcel">Arland</auteur>
@@ -185,7 +185,7 @@ return $nom
 
 Il est possible d'énumérer les résultats avec `count`.
 
-```
+``` xquery
 let $auteurs :=
     <auteurs>
         <auteur sexe='m' prenom="Marcel">Arland</auteur>
@@ -208,7 +208,7 @@ return $num||'.'||$nom
 
 Pour effectuer ses requêtes sur un document comportant un espace de noms, il faut le déclarer au préalable avec `declare namespace prefixe = "uri";`
 
-```
+``` xquery
 declare namespace t = "http://www.tei-c.org/ns/1.0";
  
 let $ns := t:TEI/name(child::*[1])
@@ -221,7 +221,7 @@ return $ns
 
 Pour préciser dans quel document on souhaite effectuer la requête, on utilise l'instruction `doc(path)`.
 
-```
+``` xquery
 declare namespace t = "http://www.tei-c.org/ns/1.0";
  
 let $rom := doc('Rom.xml')
@@ -232,7 +232,7 @@ return $editor/text()
 
 ou
 
-```
+``` xquery
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 
 for $editor in doc('Rom.xml')//t:editor
@@ -243,7 +243,7 @@ return $editor/text()
 
 Les conditions sont exprimées avec `if then else`. Attention, le `else` est toujours obligatoire ! Si on ne veut rien retourner, alors il faut renvoyer une séquence vide `()`.
 
-```
+``` xquery
 for $i in (1 to 10)
 return if ($i mod 2 = 0) then $i else 'x'
 
@@ -260,7 +260,7 @@ Les arguments et la valeur de retour doivent être typés ([https://www.w3.org/T
 
 Le corps de la fonction est entouré par des accolades, la valeur retournée sera l'évaluation de cette partie.
 
-```
+``` xquery
 declare namespace local = "documents-structures-fonctions";
 
 declare function local:bonjour($nom as xs:string) as xs:string {
@@ -274,7 +274,7 @@ local:bonjour('Marcel')
 
 Parfois, il est nécessaire d'employer le `return` explicitement en retour.
 
-```
+``` xquery
 declare namespace local = "documents-structures-fonctions";
 
 declare function local:bonjour($nom as xs:string) as xs:string {
@@ -303,7 +303,7 @@ Les fonctions sont utilisables avec le préfixe défini.
 
 Nous avons vu au début que l'on pouvait évaluer des expressions avec les accolades. On peut se servir du même mécanisme pour produire d'autres documents.
 
-```
+``` xquery
 <ul> {
 let $auteurs :=
 <auteurs>
@@ -322,7 +322,7 @@ return <li>$auteur</li>
 
 Produis le fragment HTML suivant
 
-```
+``` xquery
 <ul>
    <li>$auteur</li>
    <li>$auteur</li>
@@ -336,7 +336,7 @@ Produis le fragment HTML suivant
 
 Les boucles ont la possibilité d'être enchâssées.
 
-```
+``` xquery
 for $i in (1 to 5)
     for $y in (2, 3)
 return $i * $y
@@ -346,7 +346,7 @@ return $i * $y
 
 On peut également omettre le second `for`, dans ce cas on sépare les boucles par une virgule
 
-```
+``` xquery
 for $i in (1 to 5), $y in (2, 3)
 return $i * $y
 
@@ -384,7 +384,7 @@ Nous allons créer un module pour compter le nombre de mots dans un texte.
 1. Écrire une fonction qui normalise tous les mots d'un texte (mettre en minuscule, retirer la ponctuation) et renvoie une séquence de ceux-ci.
 2. Écrire une fonction qui prend en entrée une liste de mots et renvoie leur fréquence (voir [distinct-values](http://www.xqueryfunctions.com/xq/fn_distinct-values.html) et [count](http://www.xqueryfunctions.com/xq/fn_count.html)). Le résultat attendu est le XML suivant :
 
-```
+```xml
 <dictionnaire>
   <mot frequence="5">Le</mot>
   <mot frequence ="1">petit</mot>
