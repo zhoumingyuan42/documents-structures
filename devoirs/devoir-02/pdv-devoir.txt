@@ -1,0 +1,24 @@
+1. (:/:)
+2. (:/pdv_liste/pdv/child::*:)
+3. (:/pdv_liste/pdv/ville/text():)
+4. (:/pdv_liste/pdv[46]:)
+5. (:/pdv_liste/pdv/prix[last()]:)
+6. (:/pdv_liste/pdv[@id/string()="3150005"]:)
+7. (:/pdv_liste/pdv[not(prix/@nom = "GPL")]:)
+-------------------------------------------
+8. (:/pdv_liste/pdv/services/following-sibling::*:)
+9. /pdv_liste/pdv/ville[parent::*[@cp/string()="16170"]]
+10. /pdv_liste/pdv[ouverture/@saufjour/string()="Lundi"]
+11. /pdv_liste/pdv[services/service/text()="Relais colis"]
+12. /pdv_liste/pdv/*[following::*[10]/text()="Piste poids lourds"]
+13. /pdv_liste/pdv[rupture[contains(@début, "2013-02-04") and @nom="SP95"]]
+14. /pdv_liste/pdv[fermeture[not(@*)]]
+15. /pdv_liste/pdv[prix/@nom="E10"]/ville="La Mure"
+16. /pdv_liste/count(pdv)
+17. /pdv_liste/pdv/string-length(adresse/text())
+18. max(/pdv_liste/pdv/string-length(adresse/text()))
+19. /pdv_liste/pdv[not (ouverture/@fin = "20:00")]
+20. distinct-values(/pdv_liste/pdv/prix/lower-case(@nom))
+21. /pdv_liste/pdv/@latitude/translate(.,".","--")
+22. ??
+
